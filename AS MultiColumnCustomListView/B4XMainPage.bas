@@ -40,7 +40,7 @@ Private Sub AddItems
 		xpnl.SetLayoutAnimated(0,0,0,Root.Width/AS_MultiColumnCustomListView1.ColumnCount,Rnd(100dip,200dip))
 		'xpnl.SetLayoutAnimated(0,0,0,Root.Width/AS_MultiColumnCustomListView1.ColumnCount,150dip)
 		xpnl.Color = xui.Color_ARGB(255,Rnd(0,256),Rnd(0,256),Rnd(0,256))
-		AS_MultiColumnCustomListView1.Add(xpnl,i+1)
+		AS_MultiColumnCustomListView1.Add(xpnl,i)
 		
 	Next
 	AS_MultiColumnCustomListView1.Commit

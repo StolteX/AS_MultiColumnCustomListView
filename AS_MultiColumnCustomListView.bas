@@ -18,6 +18,11 @@ V1.03
 	-Add Designer Property LazyLoadingExtraSize
 	-Add Event LazyLoadingAddContent
 	-Add set ColumnCount
+V1.04
+	-New ScrollToValue - Scrolls the list to a specified value
+		-Scrolls the list to a specified value
+		-Animated - If True the list scrolls smoothlie - If False the list jump to the item
+		-Returns “True” if the item was found
 #End If
 
 #DesignerProperty: Key: ColumnCount, DisplayName: Columns, FieldType: Int, DefaultValue: 1, MinRange: 1, Description: Column Count
@@ -205,7 +210,7 @@ Public Sub Commit
 	
 	For i = 0 To m_ColumnCount -1
 		Dim xclv As CustomListView = xpnl_ListViewBackground.GetView(i).Tag
-		
+
 		Dim ContentHeight As Float = xclv.sv.ScrollViewContentHeight
 			
 		If ContentHeight < m_LongestClv Then
@@ -217,6 +222,26 @@ Public Sub Commit
 		End If
 	Next
 	
+End Sub
+
+'Scrolls the list to a specified value
+'Animated - If True the list scrolls smoothlie - If False the list jump to the item
+'Returns “True” if the item was found
+Public Sub ScrollToValue(Value As Object,Animated As Boolean) As Boolean
+	For i = 0 To m_ColumnCount -1
+		Dim xclv As CustomListView = xpnl_ListViewBackground.GetView(i).Tag
+		For i2 = 0 To xclv.Size -1
+			If xclv.GetValue(i2) = Value Then
+				If Animated Then
+					xclv.ScrollToItem(i2)
+				Else
+					xclv.JumpToItem(i2)
+				End If
+				Return True
+			End If
+		Next
+	Next
+	Return False
 End Sub
 
 #Region Properties
